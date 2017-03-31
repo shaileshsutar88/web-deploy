@@ -1,0 +1,56 @@
+{
+
+  "variables": {
+    "aws_access_key"  : null,
+    "aws_secret_key"  : null,
+    "github_username" : null,
+    "github_password" : null
+  },
+
+  "builders": [
+    {
+      "type"                 : "amazon-ebs",
+      "access_key"           : "{{user `aws_access_key`}}",
+      "secret_key"           : "{{user `aws_secret_key`}}",
+      "region"               : "ap-southeast-1",
+      "source_ami"           : "ami-ee7bca8d",
+      "instance_type"        : "t2.micro",
+      "ssh_username"         : "ubuntu",
+      "ami_name"             : "web-deploy-{{timestamp}}",
+      "ami_description"      : "test / ap-southeast-1 / Ubuntu 14.04 / 64-bit / hvm",
+      "vpc_id"               : "vpc-83a3b0e6",
+      "subnet_id"            : "subnet-7c915f18",
+      "run_tags"             : {
+        "Name"        : "web-deploy",
+        "environment" : "test",
+        "node"        : "base"
+      },
+      "tags"                 : {
+        "Name"        : "web-deploy test Base AMI (HVM) ({{isotime}})",
+        "environment" : "development",
+        "node"        : "base"
+      }
+    }
+  ],
+
+  "provisioners": [
+    {
+      "type": "shell",
+      "inline": [
+        "while [ ! -f /var/lib/cloud/instance/boot-finished ]; do sleep 1; done"
+      ]
+    },
+
+    {
+      "type"   : "shell",
+      "inline" : [
+	"sudo apt-get -q -y update", 
+        "sudo apt-get -q -y install git git-core curl",
+        "sudo git clone https://github.com/shaileshsutar88/web-deploy.git /var/chef", 
+        "cd /var/chef",
+        "sudo /var/chef/startup/kickstart.sh",
+        "sudo /var/chef/startup/deployer.rb"
+      ]
+    }
+  ]
+}
