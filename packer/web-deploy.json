@@ -22,13 +22,13 @@
       "subnet_id"            : "subnet-7c915f18",
       "run_tags"             : {
         "Name"        : "web-deploy",
-        "environment" : "test",
-        "node"        : "base"
+        "environment" : "staging",
+        "node"        : "basic"
       },
       "tags"                 : {
         "Name"        : "web-deploy test Base AMI (HVM) ({{isotime}})",
-        "environment" : "development",
-        "node"        : "base"
+        "environment" : "staging",
+        "node"        : "basic"
       }
     }
   ],
