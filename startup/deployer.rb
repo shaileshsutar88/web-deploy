@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 
 require "aws-sdk-v1"
+require "aws-sdk"
 require "deep_merge"
 require "etc"
 require "fileutils"
