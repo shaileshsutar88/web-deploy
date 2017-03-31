@@ -1,0 +1,7 @@
+environment: staging
+
+users:
+  - test-user
+
+cron:
+  mailto: shaileshsutar88@gmail.com
