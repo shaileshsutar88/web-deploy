@@ -1,0 +1,8 @@
+Berksfile.lock
+packer/ssutar.json
+packer/credentials.json
+packer/packer_cache
+.bundle
+tmp
+cache
+backup
