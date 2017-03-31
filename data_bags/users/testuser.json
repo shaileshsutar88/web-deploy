@@ -1,0 +1,9 @@
+{
+	"uid"		: "2001",
+	"id"		: "testuser",
+	"comment"	: "Deployment user",
+	"groups"	: [ "sudo" ],
+	"home"		: "/home/testuser",
+	"password"	: "$1$wRcyGbd4$VP2u1W5CLs5GJxOeqcTsY/",
+	"ssh_keygen"	: false
+}
